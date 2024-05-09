@@ -25,10 +25,11 @@ jobs:
           ls
           cd my_k6_project
           $GOPATH/bin/k6 run --out json=k6io.json scripts/k6io.js
+          pwd
           ls
 
       - name: Upload K6 results
         uses: actions/upload-artifact@v2
         with:
             name: k6-results
-            path: k6io.json
+            path: ${{ github.workspace }}/my_k6_project/k6io.json

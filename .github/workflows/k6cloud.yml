@@ -10,15 +10,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: k6 Load Test
+        id: k6
         uses: grafana/k6-action@v0.3.1
         with:
           cloud: true
           token: ${{ secrets.K6_CLOUD_TOKEN }}
           filename: my_k6_project/scripts/k6io.js
-          flags: --out json=my_k6_project/k6io.json
+
+      - name: Download k6 results
+        run: |
+          curl -L -o k6results.json "$(echo ${{ steps.k6.outputs.resultURL }})" 
 
       - name: Upload K6 results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
             name: k6-results
-            path: my_k6_project/k6io.json
+            path: k6results.json

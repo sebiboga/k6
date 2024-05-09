@@ -23,6 +23,7 @@ jobs:
         run: |
           pwd
           ls
+          cd my_k6_project
           $GOPATH/bin/k6 run --out json=results/k6io.json scripts/k6io.js
 
       - name: Upload K6 results

@@ -1,0 +1,27 @@
+name: K6 docker performance test 
+
+on: [push]
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+    container:
+      image: grafana/k6
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v2
+
+      - name: Run K6 test
+        run: |
+          pwd
+          ls
+          k6 run --out json=k6io.json scripts/k6io.js
+          pwd
+          ls
+          cat k6io.json
+
+      - name: Upload K6 results
+        uses: actions/upload-artifact@v2
+        with:
+            name: k6-results
+            path: k6io.json

@@ -1,4 +1,4 @@
-name: K6 performance test
+name: K6 docker performance test
 
 on: [push]
 

@@ -19,7 +19,7 @@ jobs:
 
       - name: Download k6 results
         run: |
-          curl -L -o k6results.json "$(echo ${{ steps.k6.outputs.resultURL }})" 
+          curl -L -o k6results.json "${{ steps.k6.outputs.resultURL }}"
 
       - name: Upload K6 results
         uses: actions/upload-artifact@v2

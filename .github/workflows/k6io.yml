@@ -16,7 +16,7 @@ jobs:
 
       - name: Install K6
         run: |
-          go get github.com/loadimpact/k6
+          go get go.k6.io/k6
 
       - name: Run K6 test
         run: |

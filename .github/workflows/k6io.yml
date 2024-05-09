@@ -22,6 +22,7 @@ jobs:
       - name: Run K6 test
         run: |
           pwd
+          ls
           $GOPATH/bin/k6 run --out json=results/k6io.json scripts/k6io.js
 
       - name: Upload K6 results

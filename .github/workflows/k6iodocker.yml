@@ -11,7 +11,7 @@ jobs:
 
       - name: Run K6 test
         run: |
-          docker run -v $PWD:/src -i grafana/k6 run /src/my_k6_project/scripts/k6io.js --out json=/src/my_k6_project/k6io.json
+          docker run --rm --user $(id -u):$(id -g) -v $PWD:/src -i grafana/k6 run /src/my_k6_project/scripts/k6io.js --out json=/src/my_k6_project/k6io.json
           ls
           cat my_k6_project/k6io.json
 

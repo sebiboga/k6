@@ -1,0 +1,29 @@
+name: K6 performance test
+
+on: [push]
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: Install K6
+        run: |
+          go get github.com/loadimpact/k6
+
+      - name: Run K6 test
+        run: |
+          $GOPATH/bin/k6 run --out json=results/k6io.json scripts/k6io.js
+
+      - name: Upload K6 results
+        uses: actions/upload-artifact@v2
+        with:
+          name: k6-results
+          path: results/k6io.json

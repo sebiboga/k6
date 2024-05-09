@@ -1,4 +1,4 @@
-name: K6 docker performance test
+name: K6 performance test
 
 on: [push]
 
@@ -8,14 +8,12 @@ jobs:
     steps:
       - name: Checking out code
         uses: actions/checkout@v2
-
+  
       - name: Run K6 test
-        uses: docker://grafana/k6:latest
-        with:
-          args: run --out json=k6io.json scripts/k6io.js
-
-      - name: Print JSON results
-        run: cat k6io.json
+        run: |
+          docker run -v $PWD:/src -i grafana/k6 run --out json=k6io.json /src/scripts/k6io.js
+          ls
+          cat k6io.json
 
       - name: Upload K6 results
         uses: actions/upload-artifact@v2

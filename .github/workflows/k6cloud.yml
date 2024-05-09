@@ -16,10 +16,9 @@ jobs:
           cloud: true
           token: ${{ secrets.K6_CLOUD_TOKEN }}
           filename: my_k6_project/scripts/k6io.js
+          flags: --out k6results.json
 
-      - name: Download k6 results
-        run: |
-          curl -L -o k6results.json "${{ steps.k6.outputs.resultURL }}"
+
 
       - name: Upload K6 results
         uses: actions/upload-artifact@v2

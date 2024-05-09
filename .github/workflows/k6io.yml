@@ -27,6 +27,7 @@ jobs:
           $GOPATH/bin/k6 run --out json=k6io.json scripts/k6io.js
           pwd
           ls
+          cat k6io.json
 
       - name: Upload K6 results
         uses: actions/upload-artifact@v4

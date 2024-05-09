@@ -16,7 +16,7 @@ jobs:
           cloud: true
           token: ${{ secrets.K6_CLOUD_TOKEN }}
           filename: my_k6_project/scripts/k6io.js
-          flags: --out k6results.json
+          flags: out k6results.json
 
 
 

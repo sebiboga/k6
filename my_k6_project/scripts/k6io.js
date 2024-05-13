@@ -5,20 +5,16 @@ import { sleep } from 'k6';
 
 export const options = {
   scenarios: {
-    example_scenario: { 
-      // Executor type to use https://grafana.com/docs/k6/latest/using-k6/scenarios/#scenario-executors
-      executor: 'shared-iterations',
-      // common scenario configuration
-      startTime: '10s',
-      gracefulStop: '5s',
-      env: { EXAMPLE_VAR: 'testing' },
-      tags: { example_tag: 'testing' },
-      // executor-specific configuration
-      vus: 10,     
-      maxDuration: '15m',
-    }
-  }
-}
+    constant_request_rate: {
+      executor: 'ramping-vus',
+      startVUs: 10,
+      stages: [
+        { duration: '15m', target: 10 }, // ramp up to 10 VUs over 15 minutes, and stay at 10 VUs for 15 minutes
+      ],
+      gracefulRampDown: '0s',
+    },
+  },
+};
 
 export default function () {
   http.get('http://test.k6.io');

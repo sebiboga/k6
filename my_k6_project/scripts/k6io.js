@@ -15,7 +15,7 @@ export const options = {
       tags: { example_tag: 'testing' },
       // executor-specific configuration
       vus: 10,     
-      duration: '15m',
+      maxDuration: '15m',
     }
   }
 }

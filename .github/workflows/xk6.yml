@@ -29,4 +29,4 @@ jobs:
           docker run --rm  -u "$(id -u):$(id -g)" -v "${PWD}:/xk6" grafana/xk6 build v0.43.1 --with github.com/LeonAdato/xk6-output-statsd
           pwd
           ls
-          ./k6 --version
+          ./k6 my_k6_project/scripts/k6io.js

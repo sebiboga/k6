@@ -26,4 +26,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: xk6
         run: |
-          docker run --rm  -u "$(id -u):$(id -g)" -v "${PWD}:/xk6" grafana/xk6 build v0.43.1 --with https://github.com/LeonAdato/xk6-output-statsd@v0.1.1 
+          docker run --rm  -u "$(id -u):$(id -g)" -v "${PWD}:/xk6" grafana/xk6 build v0.43.1 --with https://github.com/LeonAdato/xk6-output-statsd@v0.1.1

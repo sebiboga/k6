@@ -26,7 +26,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: build a new xk6 using the xk6-output-statsd extension
         run: |
-          docker run --rm  -u "$(id -u):$(id -g)" -v "${PWD}:/xk6" grafana/xk6 build v0.43.1 --with github.com/LeonAdato/xk6-output-statsd
+          docker run --rm  -u "$(id -u):$(id -g)" -v "${PWD}:/xk6" grafana/xk6 build v0.53.0 --with github.com/LeonAdato/xk6-output-statsd
           pwd
           ls
           ./k6 run my_k6_project/scripts/k6io.js

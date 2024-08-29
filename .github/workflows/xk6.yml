@@ -26,6 +26,17 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: build a new xk6 using the xk6-output-statsd extension
         run: |
+          DOCKER_CONTENT_TRUST=1 \
+          docker run --rm -d \
+              --name datadog \
+             -v /var/run/docker.sock:/var/run/docker.sock:ro \
+             -v /proc/:/host/proc/:ro \
+             -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+             -e DD_SITE="http-intake.logs.datadoghq.com" \
+             -e DD_API_KEY=be93a4a6270962643ad9784e4c3b0638 \
+             -e DD_DOGSTATSD_NON_LOCAL_TRAFFIC=1 \
+             -p 8125:8125/udp \
+            datadog/agent:latest
           pwd
           ls
           docker run --rm  -u "$(id -u):$(id -g)" -v "${PWD}:/xk6" grafana/xk6 build v0.53.0 --with github.com/LeonAdato/xk6-output-statsd

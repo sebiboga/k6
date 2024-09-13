@@ -17,5 +17,5 @@ jobs:
         run: |
           pwd
           ls
-          
+          chmod +x ./k6
           K6_STATSD_ENABLE_TAGS=true ./k6 run my_k6_project/scripts/k6io.js
